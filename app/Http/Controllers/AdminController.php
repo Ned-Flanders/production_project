@@ -1,0 +1,55 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Flags;
+
+class AdminController extends Controller
+{
+    public function index(Request $request)
+    {
+        $flags ['flags']=Flags::OrderBy('id','asc')->paginate(3);
+
+        return view('admin', $flags);
+    }
+
+    public function store(Request $request) {
+
+        $flags = array(
+            'challenge_name'=>$request->challenge_name,
+            'flag' => $request->flag,
+            'course' => $request->course
+        );
+
+        Flags::create($flags);
+
+        return redirect()->route('admin.index')->with('success', 'Flag Created Successfully');
+    }
+
+    public function update(Request $request) {
+
+        $flags = array(
+            'challenge_name'=>$request->challenge_name,
+            'flag' => $request->flag,
+            'course' => $request->course
+        );
+
+       Flags::findOrfail($request->flag_id)->update($flags);
+
+        return redirect()->route('admin.index')->with('success', 'Flag Updated Successfully');
+
+    }
+
+    public function destroy(Request $flag) {
+        $delete = $flag->all();
+
+        $deleteflag = Flags::findOrfail($flag->flag_id);
+
+        $deleteflag->delete();
+
+        return redirect()->route('admin.index')->with('success', 'Flag Deleted Successfully');
+
+    }
+}
+

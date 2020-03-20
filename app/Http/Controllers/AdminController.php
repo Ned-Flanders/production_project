@@ -7,6 +7,10 @@ use App\Flags;
 
 class AdminController extends Controller
 {
+    public function _constructor() {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request)
     {
         $flags ['flags']=Flags::OrderBy('id','asc')->paginate(3);

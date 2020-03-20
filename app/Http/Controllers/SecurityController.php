@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class SecurityController extends Controller
 {
+    public function _constructor() {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
 

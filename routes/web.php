@@ -16,12 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::Resource('admin', 'AdminController');
+Route::namespace('Admin') -> prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
+    Route::Resource('users', 'UsersController', ['except' => ['show', 'create', 'store']]);
+});
+
+Route::group(array('middleware' => array('can:manage-users')), function() {
+    Route::Resource('admin', 'AdminController');
+});
+
 
 Route::get('/contact', 'SendEmailController@index');
 Route::post('/sendemail/send', 'SendEmailController@send');

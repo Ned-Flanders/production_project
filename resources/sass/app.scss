@@ -10,6 +10,7 @@
 $purple: #7F2C95;
 $brown: #584E4A;
 $whitey: #f0f0f0;
+$text: #212529;
 
 $duration: .2s;
 $distance: 8px;
@@ -75,4 +76,20 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
     border-right: .3em solid transparent !important;
     border-bottom: 0 !important;
     border-left: .3em solid transparent !important;
+}
+
+.nav-item {
+    .active {
+        background-color: white;
+        color: $text;
+        &:before {
+            opacity: 1;
+            transform: none;
+        }
+
+        &:after {
+            opacity: 1;
+            transform: none;
+        }
+    }
 }

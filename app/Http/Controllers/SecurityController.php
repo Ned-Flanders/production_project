@@ -32,7 +32,7 @@ class SecurityController extends Controller
         ];
 
         $messages = [
-            'flag.exists' => "That isn't the right flag, make sure to include 'flag{'",
+            'flag.exists' => "That flag isn't right, make sure to include 'flag{'",
             'flagid.exists' => "That flagid isn't correct, are you submitting another challenge's flag?"
         ];
 

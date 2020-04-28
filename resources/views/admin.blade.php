@@ -4,7 +4,7 @@
 
     <div class="container">
         @if($message = Session::get('success'))
-            <div class=" alert ªalert-success">
+            <div class=" alert alert-success">
                 <p>{{$message}}</p>
             </div>
         @endif
@@ -92,7 +92,6 @@
             </div>
         </div>
 
-
             <!-- Modal for editing flag -->
             <div class="modal fade" id="exampleModalCenter-edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -108,16 +107,16 @@
                                 @method('PUT')
                                 <div class="form-group">
                                     <label>Challenge Name</label>
-                                    <input type="text" name="challenge_name" id="challenge_name" class="form-control" value="" required />
+                                    <input type="text" name="challenge_name" id="challenge_name" class="form-control" value="{{old('course', $flag->challenge_name)}}" required />
                                 </div>
                                 <input type="hidden" id="flag_id" name="flag_id">
                                 <div class="form-group">
                                     <label>Flag</label>
-                                    <input type="text" name="flag" id="flag" class="form-control" required>
+                                    <input type="text" name="flag" id="flag" class="form-control" value="{{old('flag', $flag->flag)}}" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Course</label>
-                                    <input type="text" name="course" id="course" class="form-control" required>
+                                    <input type="text" name="course" id="course" class="form-control" value="{{old('course', $flag->course)}}" required>
                                 </div>
 
                                 <div class="modal-footer">

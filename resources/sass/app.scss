@@ -2,24 +2,15 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables';
+@import '_variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-$purple: #7F2C95;
-$brown: #584E4A;
-$whitey: #f0f0f0;
-$text: #212529;
-
-$duration: .2s;
-$distance: 8px;
-$easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
 
 .dropdown-toggle::after {
     border: 0;
 }
-
 
 .main-nav-link, .dropdown-item {
     color: $brown;

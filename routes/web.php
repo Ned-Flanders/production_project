@@ -18,19 +18,28 @@ Route::get('/', function () {
 });
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
+Auth::routes(['verify' => true]);
 
 Route::namespace('Admin') -> prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
     Route::Resource('users', 'UsersController', ['except' => ['show', 'create', 'store']]);
+    Route::get('/leaderboard_users', 'SecurityController@leaderboard');
 });
 
 Route::group(array('middleware' => array('can:manage-users')), function() {
     Route::Resource('admin', 'AdminController');
 });
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('/security/flag', 'SecurityController@store')->name('security');
+});
+Route::get('/security', 'SecurityController@index');
+
+Route::get('/leaderboard_users', 'SecurityController@leaderboard');
+Route::get('/leaderboard', 'LeaderboardController@index');
+
 
 Route::get('/contact', 'SendEmailController@index');
 Route::post('/sendemail/send', 'SendEmailController@send');
 
-Route::get('/security', 'SecurityController@index');
+
+

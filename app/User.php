@@ -56,4 +56,8 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function flags() {
+        return $this->hasOneThrough(Flags::class, UserFlags::class, 'id');
+    }
 }

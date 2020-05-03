@@ -20,26 +20,22 @@ class AdminController extends Controller
 
     public function store(Request $request) {
 
-        $flags = array(
+        Flags::create([
             'challenge_name'=>$request->challenge_name,
             'flag' => $request->flag,
             'course' => $request->course
-        );
-
-        Flags::create($flags);
+        ]);
 
         return redirect()->route('admin.index')->with('success', 'Flag Created Successfully');
     }
 
     public function update(Request $request) {
 
-        $flags = array(
-            'challenge_name'=>$request->challenge_name,
-            'flag' => $request->flag,
-            'course' => $request->course
-        );
-
-       Flags::findOrfail($request->flag_id)->update($flags);
+       Flags::findOrfail($request->flag_id)->update([
+           'challenge_name'=>$request->challenge_name,
+           'flag' => $request->flag,
+           'course' => $request->course
+       ]);
 
         return redirect()->route('admin.index')->with('success', 'Flag Updated Successfully');
 

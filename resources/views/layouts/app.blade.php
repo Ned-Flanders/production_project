@@ -51,9 +51,6 @@
                             <a class="nav-link main-nav-link" href="{{url('/leaderboard')}}">Leaderboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link main-nav-link" href="{{url('/forum')}}">Forum</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link main-nav-link" href="{{url('/contact')}}">Contact us</a>
                         </li>
                     </ul>

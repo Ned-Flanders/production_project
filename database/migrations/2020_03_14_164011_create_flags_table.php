@@ -20,6 +20,17 @@ class CreateFlagsTable extends Migration
             $table->text('course');
             $table->timestamps();
         });
+
+//        Schema::create('flag_user', function (Blueprint $table) {
+//            $table->id();
+//            $table->bigInteger('user_id')->unsigned();
+//            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
+//            $table->bigInteger('flag_id')->unsigned();
+//            $table->foreign('flag_id')->references('id')->on('flags')->onDelete('cascade');;
+//            $table->boolean('flag_submitted');
+//            $table->timestamps();
+//        });
+
     }
 
     /**

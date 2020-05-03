@@ -2,14 +2,22 @@
 
 @section('content')
     <div class="container">
+
+        <h1>Welcome to the web security course.</h1>
+
+        <p>This course will explore some common web security vulnerabilities which exist today</p>
+
+        <p>Below you will see a choice of courses you can start on below</p>
+
+        <p>At the end of each challenge, you will be rewarded a flag which can be used to gain points and climb our <a href="https://production_project.dev/leaderboard" target="_blank"> leaderboard </a></p>
+
         <p>When you solved the challenge, enter the flag here to score a point</p>
+        <h1>Submit your flags</h1>
         <form role="form" method="post" action="{{route('security')}}">
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="flagValue">Enter flag</label>
                 <input type="text" class="form-control" id="flagValue" placeholder="Enter flag" name="flag" value="{{old('flag')}}" required>
-                <input type="hidden" id="flagid" name="flagid" value="CSRF Challenge 1">
-
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

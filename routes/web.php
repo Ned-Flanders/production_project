@@ -16,13 +16,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/log', function() {
+    Auth::logout();
+    Session::flush();
+
+    return view('welcome');
+});
 
 Auth::routes(['verify' => true]);
 
 Route::namespace('Admin') -> prefix('admin')->name('admin.')->middleware('can:manage-users')->group(function(){
     Route::Resource('users', 'UsersController', ['except' => ['show', 'create', 'store']]);
-    Route::get('/leaderboard_users', 'SecurityController@leaderboard');
 });
 
 Route::group(array('middleware' => array('can:manage-users')), function() {
@@ -31,6 +38,9 @@ Route::group(array('middleware' => array('can:manage-users')), function() {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/security/flag', 'SecurityController@store')->name('security');
+    Route::get('/security/csrf1', 'CsrfChallenge@index');
+    Route::post('/security/csrf1/submit', 'CsrfChallenge@CheckAnswers')->name('csrf_1');
+
 });
 Route::get('/security', 'SecurityController@index');
 

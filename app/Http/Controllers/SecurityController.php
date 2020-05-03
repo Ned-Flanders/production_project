@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use App\Events\ScoreUpdated;
 use Illuminate\Support\Facades\Auth;
+use DB;
+
 
 class SecurityController extends Controller
 {
@@ -19,6 +21,7 @@ class SecurityController extends Controller
 
     public function index(Request $request)
     {
+
         return view('security');
     }
 
@@ -28,12 +31,10 @@ class SecurityController extends Controller
 
         $rules = [
             'flag' => 'required|exists:flags,flag',
-            'flagid' => 'exists:flags,challenge_name'
         ];
 
         $messages = [
-            'flag.exists' => "That flag isn't right, make sure to include 'flag{'",
-            'flagid.exists' => "That flagid isn't correct, are you submitting another challenge's flag?"
+            'flag.exists' => "That flag isn't right, make sure to include 'flag{'"
         ];
 
         $validator = Validator::make($input, $rules, $messages);
@@ -42,13 +43,29 @@ class SecurityController extends Controller
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
-        $user = Auth::user();
-        $user->score = $user->score + 1;
-        $user->save();
+        $user_id = Auth::id();
 
-        event(new ScoreUpdated($user)); // broadcast `ScoreUpdated` event
+        $flagid = DB::table('flags')->where('flag', '=', request('flag'))->pluck('id')->first();
 
-        return redirect()->back()->withSuccess('Success, Your score has been updated')->withValue($user->score);
+        $submitted = DB::table('user_flags')->select('submitted')->where('flag_id', '=', $flagid)->where('user_id', '=', $user_id)->first();
+
+       if ($submitted === null) {
+
+           $user = Auth::user();
+           $user->score = $user->score + 1;
+           $user->save();
+
+           event(new ScoreUpdated($user)); // broadcast `ScoreUpdated` event
+
+           DB::table('user_flags')->insert(array(['submitted' => 1, 'user_id' => $user_id, 'flag_id' => $flagid, 'created_at' => NOW(), 'updated_at'=> NOW()]));
+
+           return redirect()->back()->withSuccess('Success, Your score has been updated')->withValue($user->score);
+       }
+
+       else {
+           return Redirect::back()->withErrors(['Error, you have already submitted this flag']);
+        }
+
     }
 
     public function leaderboard () {

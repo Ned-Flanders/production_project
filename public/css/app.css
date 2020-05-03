@@ -10981,3 +10981,19 @@ a.text-dark:focus {
   transform: none;
 }
 
+.video-responsive {
+  overflow: hidden;
+  position: relative;
+  height: 25rem;
+  max-width: 40rem;
+  width: 100%;
+}
+
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+

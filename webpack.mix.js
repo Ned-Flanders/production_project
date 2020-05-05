@@ -19,3 +19,7 @@ var LiveReloadPlugin = require('webpack-livereload-plugin');
 mix.webpackConfig({
     plugins: [new LiveReloadPlugin()]
 });
+
+const webpack = require('webpack');
+mix.js('resources/assets/js/app.js', 'public/assets/js').autoload({ jquery: ['$', 'window.jQuery', 'jQuery'] });
+

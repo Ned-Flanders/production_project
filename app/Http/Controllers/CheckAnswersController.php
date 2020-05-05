@@ -3,23 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use DB;
 
-class CsrfChallenge extends Controller
+class CheckAnswersController extends Controller
 {
-
-    public function _constructor() {
-        $this->middleware('auth');
-    }
-
-    public function index() {
-        return view ('csrf');
-    }
-
-    public function CheckAnswers (request $request) {
+    public function checkAnswers (request $request) {
 
         $input = $request->input();
 

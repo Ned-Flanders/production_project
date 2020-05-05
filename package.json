@@ -26,6 +26,8 @@
     },
     "dependencies": {
         "laravel-echo": "^1.7.0",
-        "pusher-js": "^5.1.1"
+        "pusher-js": "^5.1.1",
+        "vue-carousel": "^0.18.0",
+        "webpack": "latest"
     }
 }

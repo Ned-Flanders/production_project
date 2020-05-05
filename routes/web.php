@@ -17,14 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/log', function() {
-    Auth::logout();
-    Session::flush();
-
-    return view('welcome');
-});
+Route::view('/home', 'home');
 
 Auth::routes(['verify' => true]);
 
@@ -37,18 +30,20 @@ Route::group(array('middleware' => array('can:manage-users')), function() {
 });
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::post('/security/flag', 'SecurityController@store')->name('security');
-    Route::get('/security/csrf1', 'CsrfChallenge@index');
-    Route::post('/security/csrf1/submit', 'CsrfChallenge@CheckAnswers')->name('csrf_1');
-
+    Route::get('/submitflags', 'FlagController@index')->name('SubmitFlag');
+    Route::post('/submmitflags/submit', 'FlagController@submitFlags')->name('flag');
+    Route::get('/security/csrf1', 'CsrfChallengeController@index');
+    Route::post('/submitanswers', 'CheckAnswersController@checkAnswers')->name('check_answers');
 });
-Route::get('/security', 'SecurityController@index');
 
-Route::get('/leaderboard_users', 'SecurityController@leaderboard');
+Route::view('/security', 'security');
+Route::view('/security/csrf1', 'csrf1');
+
+Route::get('/leaderboard_users', 'LeaderboardController@leaderboard');
 Route::get('/leaderboard', 'LeaderboardController@index');
 
 
-Route::get('/contact', 'SendEmailController@index');
+Route::get('/contact', 'SendEmailController@index')->name('contact');
 Route::post('/sendemail/send', 'SendEmailController@send');
 
 

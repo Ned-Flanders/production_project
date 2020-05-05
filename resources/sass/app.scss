@@ -7,10 +7,41 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-//CSS for adding the animation to the nav bar
+//CSS for adding the animation to the nav bar, changing the colours to colour scheme
 
 .dropdown-toggle::after {
     border: 0;
+}
+
+.home {
+    .py-4 {
+        padding: 0em 0em 0em 0em !important;
+    }
+}
+
+.navbar {
+    background-color: $purple;
+
+   .nav-item {
+      .nav-link {
+          color: $yellow;
+
+          &:hover {
+              color: $peach;
+          }
+      }
+       .active {
+           background-color: inherit;
+       }
+   }
+}
+
+.navbar-light .navbar-brand {
+    color: $peach;
+
+    &:hover {
+        color: $yellow;
+    }
 }
 
 .main-nav-link, .dropdown-item {
@@ -26,7 +57,7 @@
         bottom: 2px;
         left: 0; right: 0;
         height: 2px;
-        background-color: $purple;
+        background-color: $yellow;
     }
     &:before {
         opacity: 0;
@@ -73,7 +104,8 @@
 .nav-item {
     .active {
         background-color: white;
-        color: $text;
+        color: $yellow !important;
+
         &:before {
             opacity: 1;
             transform: none;
@@ -83,6 +115,49 @@
             opacity: 1;
             transform: none;
         }
+    }
+}
+
+.masthead {
+    height: 75vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)), url('../storage/app/public/img/background.jpg') no-repeat center;
+    display: flex;
+    color: white;
+    background-size: cover;
+
+   .container {
+       display:flex;
+       justify-content: space-between;
+       align-items: center;
+
+       button {
+           border-radius: 8px;
+           padding: 5px 10px;
+           text-align: center;
+           border: none;
+           color: $black;
+           text-align: center;
+       }
+
+       .left-content, .right-content {
+           h2 {
+               margin: 0;
+               padding: 0 0 0.2em 0;
+           }
+
+           p {
+               margin: 0;
+               padding: 0 0 0.2em 0;
+           }
+       }
+
+       .right-content {
+            text-align: right;
+       }
+   }
+    button {
+        background-color: $teal;
+        color: white;
     }
 }
 
@@ -102,4 +177,52 @@
     width:100%;
     position:absolute;
 }
+
+.courses {
+    background: $offwhite;
+
+    .slick-arrow:before, .slick-next:before {
+        color: $yellow;
+    }
+
+    .container {
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+
+        h2 {
+            text-align: center;
+            margin: 50px 0;
+            color: $purple;
+            text-decoration: underline;
+            text-underline-position: under;
+        }
+
+
+        .carousel-item {
+
+            .carousel-image {
+                height: 200px;
+
+            }
+
+            #web {
+                background: url('../storage/app/public/img/security.jpg');
+                background-size: contain;
+            }
+
+            h3, p {
+                text-align: center;
+                margin:0;
+
+            }
+
+            h3 {
+                padding: 10px 0;
+                color: $purple;
+            }
+        }
+    }
+}
+
 

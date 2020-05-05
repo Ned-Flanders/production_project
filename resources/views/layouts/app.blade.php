@@ -15,10 +15,13 @@
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/slick.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/slick-theme.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Beckett Academy') }}
@@ -103,5 +106,8 @@
     </div>
 </body>
 <!-- Scripts -->
-<script src="{{ mix('js/app.js') }}" defer></script>
+
+<script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ asset('js/slick.js') }}"></script>
+
 </html>

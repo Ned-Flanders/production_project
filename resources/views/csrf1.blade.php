@@ -16,7 +16,7 @@
         <p>If we visit this site <a href="https://www.attacker.dev/csrf1" target="_blank">Attack site</a> it will try to log us out of this site. This is an exmaple of a CSRF attack. The attacker is trying to use their site to perform actions on your behalf without you even knowing</p>
         <p>To gain your first flag of this course, put in the  element the attacker used to try log you out of the site</p><br>
 
-        <form role="form" method="post" action="{{route('csrf_1')}}">
+        <form role="form" method="post" action="{{route('check_answers')}}">
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="flagValue">Enter answer</label>
@@ -25,7 +25,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        <form role="form" method="post" action="{{route('csrf_1')}}">
+        <form role="form" method="post" action="{{route('check_answers')}}">
             {{ csrf_field() }}
             <div class="form-group">
                 <label for="flagValue">Enter answer</label>
